@@ -2,10 +2,10 @@ package server
 
 import (
 	"encoding/json"
+	"github.com/andrzejd-pl/SimpleRestBlogBackend/database"
+	"github.com/andrzejd-pl/SimpleRestBlogBackend/usage"
 	"github.com/gorilla/mux"
 	"log"
-	"mysql/database"
-	"mysql/usage"
 	"net/http"
 	"os"
 )

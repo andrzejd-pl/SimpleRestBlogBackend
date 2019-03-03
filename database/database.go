@@ -2,8 +2,8 @@ package database
 
 import (
 	"database/sql"
+	"github.com/andrzejd-pl/SimpleRestBlogBackend/usage"
 	_ "github.com/go-sql-driver/mysql"
-	"mysql/usage"
 	"os"
 )
 

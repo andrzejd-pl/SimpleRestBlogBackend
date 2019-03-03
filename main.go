@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/andrzejd-pl/SimpleRestBlogBackend/usage"
 	"github.com/joho/godotenv"
 	"mysql/server"
-	"mysql/usage"
 )
 
 func main() {
