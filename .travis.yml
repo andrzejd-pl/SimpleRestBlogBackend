@@ -30,6 +30,7 @@ notifications:
 # Make sure golangci-lint is vendored.
 before_script:
   - go get -v -t -d ./...
+  - mv .env-tests .env
 
 matrix:
   include:
