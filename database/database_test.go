@@ -40,7 +40,7 @@ func TestGetAllArticles(t *testing.T) {
 		want []Article
 	}{
 		{
-			"Category",
+			"Article",
 			[]Article{
 				{
 					1,
