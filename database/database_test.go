@@ -19,7 +19,7 @@ func TestGetAllCategories(t *testing.T) {
 		{
 			"Category",
 			[]Category{
-				{1, "Programowanie", "Wpisy na temat programowania, projektów, itp."},
+				{1, "TestName", "TestDescription"},
 			},
 		},
 	}
@@ -27,6 +27,34 @@ func TestGetAllCategories(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetAllCategories(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("GetAllCategories() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetAllArticles(t *testing.T) {
+	err := godotenv.Load("../.env")
+	usage.CheckErr(err)
+	tests := []struct {
+		name string
+		want []Article
+	}{
+		{
+			"Article",
+			[]Article{
+				{
+					1,
+					Category{1, "TestName", "TestDescription"},
+					"TestTitle",
+					"TestContent",
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetAllArticles(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetAllArticles() = %v, want %v", got, tt.want)
 			}
 		})
 	}

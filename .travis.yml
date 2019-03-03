@@ -40,7 +40,9 @@ matrix:
       before_install:
         - mysql -e 'CREATE DATABASE myapp_test;'
         - mysql -e 'USE myapp_test; CREATE TABLE `categories` (`CategoryID` int(11) NOT NULL AUTO_INCREMENT, `CategoryName` varchar(255) NOT NULL, `CategoryDescription` text DEFAULT NULL, PRIMARY KEY (`CategoryID`), UNIQUE KEY `categories_CategoryName_uindex` (`CategoryName`) ) ENGINE=InnoDB AUTO_INCREMENT=2;'
-        - mysql -e 'USE myapp_test; INSERT INTO `categories` (CategoryID, CategoryName, CategoryDescription) VALUES ("1","Programowanie","Wpisy na temat programowania, projektów, itp.");'
+        - mysql -e 'USE myapp_test; INSERT INTO `categories` (CategoryID, CategoryName, CategoryDescription) VALUES ("1","TestName","TestDescription");'
+        - mysql -e 'USE myapp_test; CREATE TABLE `articles` (`ArticleID` int(11) NOT NULL AUTO_INCREMENT, `CategoryID` int(11) NOT NULL, `ArticleTitle` varchar(255) NOT NULL, `ArticleContent` longtext DEFAULT NULL, PRIMARY KEY (`ArticleID`), KEY `articles_categories_CategoryID_fk` (`CategoryID`), KEY `articles_ArticleTitle_index` (`ArticleTitle`), CONSTRAINT `articles_categories_CategoryID_fk` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`)) ENGINE=InnoDB AUTO_INCREMENT=2'
+        - mysql -e 'USE myapp_test; INSERT INTO `articles` (ArticleID, CategoryID, ArticleTitle, ArticleContent) VALUES ("1","1","TestTitle","TestContent");'
 
 # script always runs to completion (set +e). If we have linter issues AND a
 # failing test, we want to see both. Configure golangci-lint with a
