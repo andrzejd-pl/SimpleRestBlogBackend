@@ -39,7 +39,7 @@ matrix:
       before_install:
         - mysql -e 'CREATE DATABASE myapp_test;'
         - mysql -e 'USE myapp_test; CREATE TABLE `categories` (`CategoryID` int(11) NOT NULL AUTO_INCREMENT, `CategoryName` varchar(255) NOT NULL, `CategoryDescription` text DEFAULT NULL, PRIMARY KEY (`CategoryID`), UNIQUE KEY `categories_CategoryName_uindex` (`CategoryName`) ) ENGINE=InnoDB AUTO_INCREMENT=2;'
-        - mysql -e 'INSERT INTO `categories` (CategoryID, CategoryName, CategoryDescription) VALUES ("1","Programowanie","Wpisy na temat programowania, projektów, itp.");'
+        - mysql -e 'USE myapp_test; INSERT INTO `categories` (CategoryID, CategoryName, CategoryDescription) VALUES ("1","Programowanie","Wpisy na temat programowania, projektów, itp.");'
 
 # script always runs to completion (set +e). If we have linter issues AND a
 # failing test, we want to see both. Configure golangci-lint with a
