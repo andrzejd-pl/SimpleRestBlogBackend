@@ -17,6 +17,7 @@ func Run() {
 	key := os.Getenv("SERVER_KEY")
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/categories", categories)
+	router.HandleFunc("/articles", articles)
 
 	cfg := &tls.Config{
 		MinVersion:               tls.VersionTLS12,
@@ -42,5 +43,11 @@ func Run() {
 func categories(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(database.GetAllCategories())
+	usage.CheckErr(err)
+}
+
+func articles(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(database.GetAllArticles())
 	usage.CheckErr(err)
 }
