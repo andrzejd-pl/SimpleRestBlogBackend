@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  database:
+    image: mariadb/server:10.3
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD=true
+      - MARIADB_USER=${DATABASE_USER}
+      - MARIADB_PASSWORD=${DATABASE_PASS}
+      - MARIADB_DATABASE=${DATABASE_NAME}
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+  api:
+    build: .
+    volumes:
+      - ./server.crt:/go/src/github.com/andrzejd-pl/SimpleRestBlogBackend/server.crt
+      - ./server.key:/go/src/github.com/andrzejd-pl/SimpleRestBlogBackend/server.key
+      - ./.env:/go/src/github.com/andrzejd-pl/SimpleRestBlogBackend/.env
+    ports:
+      - 443:${APP_PORT}
+    depends_on:
+      - database

@@ -1,6 +1,7 @@
 .env
 *.crt
 *.key
+data/*
 
 # Created by https://www.gitignore.io/api/go,intellij+all
 # Edit at https://www.gitignore.io/?templates=go,intellij+all
